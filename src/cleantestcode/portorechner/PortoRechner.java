@@ -4,9 +4,13 @@ public class PortoRechner {
 
 	public static int berechnePorto(Brief brief) throws Exception {
 		BriefTyp type = BriefTypErmittler.ermittleType(brief);
-		int porto = brief.international ? ermittlePortoInternationalFuer(type) : ermittlePortoFuer(type);
+		int porto = ermittlePorto(brief, type);
 		int einschreibeZuschlag = ermittleEinschreibeZuschlag(brief);
 		return porto + einschreibeZuschlag;
+	}
+
+	private static int ermittlePorto(Brief brief, BriefTyp type) {
+		return brief.international ? ermittlePortoInternationalFuer(type) : ermittlePortoFuer(type);
 	}
 
 	public static int ermittlePortoFuer(BriefTyp type) {
